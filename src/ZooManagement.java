@@ -3,63 +3,55 @@
 import java.util.Scanner;
 
 public class ZooManagement {
-    int nbrCages = 20;
-    String zooName = "my zoo";
 
     public static void main(String[] args) {
-        ZooManagement zoo = new ZooManagement();
 
-        System.out.println( zoo.zooName + " comporte " + zoo.nbrCages + " cages.");
+        Zoo myZoo = new Zoo("My Zoo", "Tunis");
 
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Entrez le nom du zoo : ");
-        String inputName = sc.nextLine();
-        while (inputName.trim().isEmpty()) {
-            System.out.print("Le nom du zoo ne peut pas être vide. Réessayez : ");
-            inputName = sc.nextLine();
-        }
-        zoo.zooName = inputName;
-
-        System.out.print("Entrez le nombre de cages : ");
-        int inputCages = -1;
-        while (true) {
-            if (sc.hasNextInt()) {
-                inputCages = sc.nextInt();
-                if (inputCages > 0) {
-                    break;
-                } else {
-                    System.out.print("Le nombre de cages doit être positif. Réessayez : ");
-                }
-            } else {
-                System.out.print("Veuillez entrer un entier valide. Réessayez : ");
-                sc.next();
-            }
-        }
-        zoo.nbrCages = inputCages;
-
-        System.out.println( zoo.zooName + " comporte " + zoo.nbrCages + " cages.");
-
-        sc.close();
 
         Animal lion = new Animal("Felidae", "Lion", 5, true);
         Animal tiger = new Animal("Felidae", "Tiger", 3, true);
         Animal crocodile = new Animal("Crocodylidae", "Crocodile", 10, true);
+        Animal lion2 = new Animal("Felidae", "Lion", 5, true);
 
 
-        Zoo myZoo = new Zoo("My Zoo", "Tunis", 20);
 
-        myZoo.animals[0] = lion;
-        myZoo.animals[1] = tiger;
-        myZoo.animals[2] = crocodile;
 
-        myZoo.displayZoo();
+
+        System.out.println("Ajout du lion : " + myZoo.addAnimal(lion));
+        System.out.println("Ajout du tigre : " + myZoo.addAnimal(tiger));
+        System.out.println("Ajout du crocodile : " + myZoo.addAnimal(crocodile));
+        System.out.println("Ajout du lion : " + myZoo.addAnimal(lion2));
 
         System.out.println(myZoo);
-        System.out.println(myZoo.toString());
-        System.out.println(lion);
-        System.out.println(tiger);
-        System.out.println(crocodile);
+
+        myZoo.ShowAnimals();
+
+        boolean removed = myZoo.removeAnimal(lion);
+        System.out.println("\nSuppression du lion réussie ? " + removed);
+
+        System.out.println(myZoo);
+
+        myZoo.ShowAnimals();
+
+        System.out.println("Le zoo est-il plein ? " + myZoo.isZooFull());
+
+
+        Zoo zoo1 = new Zoo("Zoo A", "Paris");
+        Zoo zoo2 = new Zoo("Zoo B", "Tunis");
+
+        zoo1.addAnimal(new Animal("Canidae", "Loup", 4, true));
+        zoo1.addAnimal(new Animal("Felidae", "Tigre", 3, true));
+
+        zoo2.addAnimal(new Animal("Ursidae", "Ours", 7, true));
+
+        Zoo biggerZoo = Zoo.comparerZoo(zoo1, zoo2);
+
+        if (biggerZoo != null) {
+            System.out.println("Le zoo avec le plus d’animaux est : " + biggerZoo.name);
+        } else {
+            System.out.println("Les deux zoos ont le même nombre d’animaux.");
+        }
 
     }
 }
