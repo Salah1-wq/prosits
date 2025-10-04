@@ -1,6 +1,7 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+package main;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import java.util.Scanner;
+import entities.Zoo;
+import entities.Animal;
 
 public class ZooManagement {
 
@@ -15,6 +16,7 @@ public class ZooManagement {
         Animal lion2 = new Animal("Felidae", "Lion", 5, true);
 
 
+        System.out.println("Le zoo est-il plein ? " + myZoo.isZooFull());
 
 
 
@@ -34,8 +36,6 @@ public class ZooManagement {
 
         myZoo.ShowAnimals();
 
-        System.out.println("Le zoo est-il plein ? " + myZoo.isZooFull());
-
 
         Zoo zoo1 = new Zoo("Zoo A", "Paris");
         Zoo zoo2 = new Zoo("Zoo B", "Tunis");
@@ -48,10 +48,11 @@ public class ZooManagement {
         Zoo biggerZoo = Zoo.comparerZoo(zoo1, zoo2);
 
         if (biggerZoo != null) {
-            System.out.println("Le zoo avec le plus d’animaux est : " + biggerZoo.name);
+            System.out.println("Le zoo avec le plus d’animaux est : " + biggerZoo.getName());
         } else {
             System.out.println("Les deux zoos ont le même nombre d’animaux.");
         }
+
 
     }
 }
